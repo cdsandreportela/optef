@@ -1,0 +1,19 @@
+---
+- name: Run grep command and display result
+  hosts: all
+  gather_facts: no
+  vars:
+    search_term: "{{ search_term_var }}"
+
+  tasks:
+    - name: Change to the directory
+      ansible.builtin.shell:
+        cmd: cd /home/tef/scripts
+
+    - name: Execute grep command
+      ansible.builtin.shell: "./listefall | grep {{ search_term }}"
+      register: grep_output
+
+    - name: Display the result
+      ansible.builtin.debug:
+        msg: "{{ grep_output.stdout_lines }}"
