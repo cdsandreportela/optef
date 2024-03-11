@@ -3,7 +3,7 @@
   hosts: all
   gather_facts: no
   vars:
-    search_term: "{{ search_term_var }}"
+    numero_logico: "{{ search_term_var }}"
 
   tasks:
     - name: Change to the directory
@@ -11,7 +11,7 @@
         cmd: cd /home/tef/scripts
 
     - name: Execute grep command
-      ansible.builtin.shell: "./listefall | grep {{ search_term }}"
+      ansible.builtin.shell: "./listefall | grep {{ numero_logico }}"
       register: grep_output
 
     - name: Display the result
